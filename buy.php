@@ -19,7 +19,6 @@
     $saleDAO = new SaleDao();
     $saleDAO->insert($member->memberid, $cart_list);
 
-    // 購入後にカートを空にする
     $cartDAO->delete_by_memberid($member->memberid);
 
 ?>
