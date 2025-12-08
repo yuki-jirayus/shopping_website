@@ -1,0 +1,20 @@
+#logo {
+    float: left;
+  }
+  
+  #search-box {
+    float: right;
+    margin-bottom: 5px;
+  }
+  
+  #link {
+    float: right;
+    clear: right;
+  }
+  
+  #clear {
+    clear: both;
+  }
+  
+
+  
