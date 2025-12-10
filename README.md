@@ -1,6 +1,6 @@
 # ショッピングサイト（PHP + SQL Server）
 
-本リポジトリは、専門学校の授業内で開発した簡易ショッピングサイトです。  
+本リポジトリは、学校の授業内で開発したショッピングサイトです。  
 PHP と Microsoft SQL Server を使用した Web アプリケーションで、XAMPP を用いてローカル実行が可能です。
 
 GitHub リポジトリ：[https://github.com/yuki-jirayus/shopping_website](https://github.com/yuki-jirayus/shopping_website)
@@ -16,7 +16,7 @@ GitHub リポジトリ：[https://github.com/yuki-jirayus/shopping_website](http
 ### Webサーバ・言語
 
 - Apache（XAMPP に含まれる）
-- PHP 7.4 以上（PHP 8 でも動作確認済）
+- PHP 7.4 以上
 
 ### データベース
 
@@ -29,7 +29,7 @@ GitHub リポジトリ：[https://github.com/yuki-jirayus/shopping_website](http
 
 ### その他
 
-- Git（クローン用）
+
 - XAMPP（Apache + PHP 環境構築用）
 
 ---
@@ -59,11 +59,11 @@ C:\xampp\htdocs\shopping_website\
 ```
 ### 2-3. データベース準備
 
-①SQL Server Management Studio でログイン
+1. SQL Server Management Studio でログイン
 
-②データベース作成（例：jecShopping）
+2. データベース作成（例：jecShopping）
 
-③以下のテーブルを作成する:
+3. 以下のテーブルを作成する:
 
 - goods（商品マスタ）
 
@@ -79,48 +79,44 @@ C:\xampp\htdocs\shopping_website\
 
 helpers/db_helper.php に以下のように記述：
 
-define('DB_SERVER', 'localhost\\SQLEXPRESS');  // SQL Server名
+- define('DB_SERVER', 'localhost\\SQLEXPRESS');  [SQL Server名]
 
-define('DB_NAME',   'jecShopping');            // データベース名
+- define('DB_NAME',   'jecShopping');            [データベース名]
 
-define('DB_USER',   'your_user');              // ユーザ名
+- define('DB_USER',   'your_user');              [ユーザ名]
 
-define('DB_PASS',   'your_password');          // パスワード
-
-
-PDO 接続例：
-
-$dsn = "sqlsrv:Server=" . DB_SERVER . ";Database=" . DB_NAME;
-$conn = new PDO($dsn, DB_USER, DB_PASS);
+- define('DB_PASS',   'your_password');          [パスワード]
 
 ### 2-5. Apache / SQL Server を起動してアクセス
 
-XAMPP コントロールパネルで Apache を起動
+- XAMPP コントロールパネルで Apache を起動
 
-SQL Server を起動（Windowsサービス確認）
+- SQL Server を起動（Windowsサービス確認）
 
-以下のURLにアクセス：
+- URLにアクセス：http://localhost/shopping_website/index.php
 
-http://localhost/shopping_website/index.php
-
-3. 簡単な設計説明
+## 3. 簡単な設計説明
 ### 3-1. ページ構成と機能
-ファイル名	機能概要
-- index.php	トップページ、商品一覧・検索表示
-- goods.php	商品詳細ページ、カート追加
-cart.php	カート内商品確認、数量変更、購入へ遷移
-buy.php	購入確認・注文データ登録
-login.php	ログイン処理（セッション保存）
-signup.php	会員登録ページ
-logout.php	ログアウト処理（セッション削除）
-header.php	上部共通メニュー（ログイン状況・メニュー）
+| ファイル名        | 機能概要                  |
+| ------------ | --------------------- |
+| `index.php`  | トップページ、商品一覧・検索表示      |
+| `goods.php`  | 商品詳細ページ、カート追加         |
+| `cart.php`   | カート内商品確認、数量変更、購入へ遷移   |
+| `buy.php`    | 購入確認・注文データ登録          |
+| `login.php`  | ログイン処理（セッション保存）       |
+| `signup.php` | 会員登録ページ               |
+| `logout.php` | ログアウト処理（セッション削除）      |
+| `header.php` | 上部共通メニュー（ログイン状況・メニュー） |
+
+
 ### 3-2. 補助フォルダ
 
-css/: スタイルシート
+| フォルダ名      | 内容                   |
+| ---------- | -------------------- |
+| `css/`     | スタイルシート              |
+| `images/`  | 商品画像・ロゴなど            |
+| `helpers/` | DB アクセス、共通関数（DAO など） |
 
-images/: 商品画像やロゴなど
-
-helpers/: DBアクセスや共通関数（DAO など）
 
 ### 3-3. 機能の流れ（商品購入）
 
@@ -133,10 +129,12 @@ cart.php で確認 → ログイン → 購入ボタン押下
 buy.php にて注文確定・DB登録
 
 ### 3-4. データベース概要
-テーブル名	主なカラム
-goods	商品コード、商品名、価格、画像パス、在庫数など
-goodsgroup	グループコード、グループ名
-users	ユーザID、名前、メール、パスワード（ハッシュ）、住所等
-orders	注文ID、ユーザID、日時、合計金額など
-order_details	注文ID、商品コード、数量、単価
+| テーブル名           | 主なカラム                          |
+| --------------- | ------------------------------ |
+| `goods`         | 商品コード、商品名、価格、画像パス、在庫数 など       |
+| `goodsgroup`    | グループコード、グループ名                  |
+| `users`         | ユーザID、名前、メール、パスワード（ハッシュ）、住所 など |
+| `orders`        | 注文ID、ユーザID、日時、合計金額 など          |
+| `order_details` | 注文ID、商品コード、数量、単価               |
 
+<h1 align="center">🙌 ご覧いただき、誠にありがとうございました！🙌</h1>
