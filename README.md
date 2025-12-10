@@ -38,11 +38,13 @@ GitHub リポジトリ：[https://github.com/yuki-jirayus/shopping_website](http
 
 ### 2-1. ソースコード取得
 
-```bash
 cd C:\xampp\htdocs
 git clone https://github.com/yuki-jirayus/shopping_website.git
 
-2-2. フォルダ構成例
+
+### 2-2. フォルダ構成例
+```bash
+
 C:\xampp\htdocs\shopping_website\
   ├─ index.php
   ├─ goods.php
@@ -57,28 +59,32 @@ C:\xampp\htdocs\shopping_website\
 ```
 ### 2-3. データベース準備
 
-SQL Server Management Studio でログイン
+①SQL Server Management Studio でログイン
 
-データベース作成（例：jecShopping）
+②データベース作成（例：jecShopping）
 
-以下のテーブルを作成（授業配布資料の SQL を使用）:
+③以下のテーブルを作成する:
 
-goods（商品マスタ）
+- goods（商品マスタ）
 
-goodsgroup（商品カテゴリ）
+- goodsgroup（商品カテゴリ）
 
-users（会員情報）
+- users（会員情報）
 
-orders（注文ヘッダー）
+- orders（注文ヘッダー）
 
-order_details（注文明細）
+- order_details（注文明細）
 
-2-4. DB接続情報の設定
+### 2-4. DB接続情報の設定
 
 helpers/db_helper.php に以下のように記述：
+
 define('DB_SERVER', 'localhost\\SQLEXPRESS');  // SQL Server名
+
 define('DB_NAME',   'jecShopping');            // データベース名
+
 define('DB_USER',   'your_user');              // ユーザ名
+
 define('DB_PASS',   'your_password');          // パスワード
 
 
@@ -87,7 +93,7 @@ PDO 接続例：
 $dsn = "sqlsrv:Server=" . DB_SERVER . ";Database=" . DB_NAME;
 $conn = new PDO($dsn, DB_USER, DB_PASS);
 
-2-5. Apache / SQL Server を起動してアクセス
+### 2-5. Apache / SQL Server を起動してアクセス
 
 XAMPP コントロールパネルで Apache を起動
 
@@ -98,7 +104,7 @@ SQL Server を起動（Windowsサービス確認）
 http://localhost/shopping_website/index.php
 
 3. 簡単な設計説明
-3-1. ページ構成と機能
+### 3-1. ページ構成と機能
 ファイル名	機能概要
 - index.php	トップページ、商品一覧・検索表示
 - goods.php	商品詳細ページ、カート追加
@@ -108,7 +114,7 @@ login.php	ログイン処理（セッション保存）
 signup.php	会員登録ページ
 logout.php	ログアウト処理（セッション削除）
 header.php	上部共通メニュー（ログイン状況・メニュー）
-3-2. 補助フォルダ
+### 3-2. 補助フォルダ
 
 css/: スタイルシート
 
@@ -116,7 +122,7 @@ images/: 商品画像やロゴなど
 
 helpers/: DBアクセスや共通関数（DAO など）
 
-3-3. 機能の流れ（商品購入）
+### 3-3. 機能の流れ（商品購入）
 
 index.php で商品一覧を表示
 
@@ -126,7 +132,7 @@ cart.php で確認 → ログイン → 購入ボタン押下
 
 buy.php にて注文確定・DB登録
 
-3-4. データベース概要
+### 3-4. データベース概要
 テーブル名	主なカラム
 goods	商品コード、商品名、価格、画像パス、在庫数など
 goodsgroup	グループコード、グループ名
